@@ -8,6 +8,13 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Password hash middleware.
+// UserSchema.pre("save") defines a pre-save hook that runs before a user document is saved.
+// It checks if the password field is modified using isModified("password").
+// If password is not modified, it calls next() to move to the next middleware without hashing the password.
+// If password is modified, it generates a salt using bcrypt.genSalt(). The salt is used to secure the hashing process.
+// The salt is then used to hash the plain text password using bcrypt.hash().
+// The hashed password generated is saved back to the user document replacing the original plain text password.
+// Calls next() to proceed with saving the document with the hashed password now.
 
 UserSchema.pre("save", function save(next) {
   const user = this;
@@ -29,6 +36,16 @@ UserSchema.pre("save", function save(next) {
 });
 
 // Helper method for validating user's password.
+
+// Defines a method comparePassword on UserSchema.methods.
+// It takes the candidate password (e.g. from login form) as the first parameter.
+// The user's hashed password is accessed via this.password.
+// bcrypt's compare() method is used to compare the candidate password with the hashed password.
+// compare() takes the plain and hashed passwords, checks if they match, and returns true or false via the isMatch parameter in the callback.
+// Any error is returned via the err parameter in the callback.
+// The callback function cb() is called with err and isMatch once the comparison is completed.
+// This method can be used during login to compare the password entered by the user with the hashed password stored for that user during registration.
+// If there is a match, authentication succeeds. If not, authentication fails.
 
 UserSchema.methods.comparePassword = function comparePassword(
   candidatePassword,
