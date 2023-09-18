@@ -1,5 +1,6 @@
 module.exports = {
   ensureAuth: function (req, res, next) {
+    //check if user is login
     if (req.isAuthenticated()) {
       return next();
     } else {
@@ -7,6 +8,7 @@ module.exports = {
     }
   },
   ensureGuest: function (req, res, next) {
+    //check if user is not login
     if (!req.isAuthenticated()) {
       return next();
     } else {
