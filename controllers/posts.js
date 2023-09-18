@@ -74,3 +74,42 @@ module.exports = {
     }
   },
 };
+
+// The req.user object populated by Passport.js contains the full user document of the currently logged in user.
+
+// For example, if you have a User model like:
+
+// const UserSchema = new mongoose.Schema({
+//   firstName: String,
+//   lastName: String,
+//   email: String
+// });
+// When a user authenticates, the req.user will be the MongoDB document representing that user:
+
+// // req.user after login
+// req.user = {
+//   _id: '123abc',
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   email: 'john@gmail.com' 
+// }
+// So req.user contains:
+
+// The user ID (_id field)
+// All the fields on the User model (firstName, lastName, etc)
+// Any custom fields you added to the model
+// This allows you to access the user's information in request handlers via req.user after they log in.
+
+// Some common operations:
+
+// // Get user ID 
+// const userId = req.user._id;
+
+// // Get user email
+// const email = req.user.email; 
+
+// // Check if admin user
+// if(req.user.role === 'admin') {
+//   // admin user
+// }
+// So in summary, req.user contains the entire user document which gives you access to any fields in the User model for the authenticated user.
