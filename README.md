@@ -1,20 +1,14 @@
-# Install
+link: https://pictureportal.onrender.com/
 
-`npm install`
+This is a website for posting, commenting, and liking other images similar to a social media app.
+Log in by creating an account.
+Some images should be uploaded already, click on "browse other photos for those images"
 
----
+Users can
+- create/delete post
+- create/delete comments
+- like post
+- view post that others users had made
 
-# Things to add
-
-- Create a `.env` file in config folder and add the following as `key = value`
-  - PORT = 2121 (can be any port example: 3000)
-  - DB_STRING = `your database URI`
-  - CLOUD_NAME = `your cloudinary cloud name`
-  - API_KEY = `your cloudinary api key`
-  - API_SECRET = `your cloudinary api secret`
-
----
-
-# Run
-
-`npm start`
+Users cannot
+- Delete other Users post or comments
