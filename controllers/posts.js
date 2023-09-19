@@ -22,9 +22,21 @@ module.exports = {
   },
   getPost: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
-      const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "asc" }).lean();
-      res.render("post.ejs", { post: post, user: req.user, comments: comments });
+      const postId = req.params.id;
+      const post = await Post.findById(postId);
+      const comments = await Comment.find({ post: postId }).sort({
+        createdAt: "asc",
+      }).lean();
+
+      // Check if the user has already liked the post
+      const userHasLiked = post.likes.includes(req.user.id);
+
+      res.render("post.ejs", {
+        post: post,
+        user: req.user,
+        comments: comments,
+        userHasLiked: userHasLiked, //boolean val
+      });
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +51,7 @@ module.exports = {
         image: result.secure_url,
         cloudinaryId: result.public_id,
         caption: req.body.caption,
-        likes: 0,
+        likes: [],
         user: req.user.id,
       });
       console.log("Post has been added!");
@@ -50,14 +62,22 @@ module.exports = {
   },
   likePost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      const postId = req.params.id;
+      const userId = req.user.id;
+
+      const post = await Post.findById(postId);
+
+      // Check if the user has already liked the post
+      if (post.likes.includes(userId)) {
+        return res.status(400).send("You have already liked this post");
+      }
+
+      // Add the user's ID to the likes array
+      post.likes.push(userId);
+      await post.save();
+
+      console.log("Post liked!");
+      res.redirect(`/post/${postId}`);
     } catch (err) {
       console.log(err);
     }
