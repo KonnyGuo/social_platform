@@ -1,0 +1,75 @@
+/* Default styles for larger screens */
+.comments {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.caption {
+    border: 1px solid black;
+    padding: 10px;
+    white-space: normal;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.form-control {
+    width: 50%;
+}
+
+.better_spacing {
+    display: flex;
+    margin-top: 10px;
+}
+
+.del_button {
+    margin-top: 5px;
+}
+
+ul {
+    list-style-type: none;
+    margin-right: 40px;
+    margin-left: 0; /* Remove default left margin */
+    padding-left: 0; /* Remove default left padding */
+}
+
+h4 {
+    margin-top: 20px;
+}
+/* Media query for screens smaller than 768px wide (e.g., tablets and mobile devices) */
+@media (max-width: 768px) {
+    /* Adjust the styles for smaller screens */
+    .caption {
+        width: 100%; /* Expand caption to full width on smaller screens */
+    }
+
+    .form-control {
+        width: 100%; /* Expand the form input to full width on smaller screens */
+    }
+
+    .better_spacing {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+    }
+
+    /* Adjust the styles for smaller screens */
+    .col-12.col-lg-6>div {
+        text-align: center;
+        /* Center align the user information and "Add a post" section */
+    }
+}
+
+/* Media query for screens between 768px and 1200px wide (e.g., medium-sized screens) */
+@media (min-width: 769px) and (max-width: 1200px) {
+    /* Adjust styles for Font Awesome icons and likes */
+    .heart {
+        width: 30px;
+        /* Reduce the width of the heart icon container */
+    }
+    .heart button {
+        font-size: 16px;
+        /* Adjust the font size of the heart icon */
+    }
+    h5 {
+        margin-left: 20px;
+        /* Increase the left margin of likes */
+    }
+}
