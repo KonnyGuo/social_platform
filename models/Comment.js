@@ -13,6 +13,18 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post",
   },
+
+  createdBy: {
+    type: String,
+    ref: "User"
+  }, 
+
+  //referencing user id, need to be able to delete comments
+  createdById: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,
