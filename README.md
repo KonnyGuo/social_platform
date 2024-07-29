@@ -4,6 +4,8 @@ This is a website for posting, commenting, and liking other images similar to a 
 Log in by creating an account.
 Some images should be uploaded already, click on "browse other photos" for images that are uploaded.
 
+<img src="public/imgs/login_homePage.png" alt="login" style="width:300px;">
+
 Users can
 - create/delete post
 - create/delete comments
