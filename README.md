@@ -1,5 +1,3 @@
-link: https://pictureportal.onrender.com/
-
 VsCode Setup:
 ```plaintext
 git clone https://github.com/KonnyGuo/social_platform.git or download as zip
